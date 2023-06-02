@@ -1,0 +1,67 @@
+@import "../../../css-config/mixins.scss";
+
+.hero-banner {
+  // padding: 40px 0;
+  position: relative;
+  @include md {
+    height: calc(100vh - 80px);
+  }
+  img {
+    width: 100%;
+  }
+  .content {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 auto;
+
+    @include md {
+      flex-direction: row;
+      // max-width: 1500px;
+    }
+    .text-content {
+      position: absolute;
+    }
+  }
+
+  #slider {
+    // margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    @include md {
+      width: 100%;
+    }
+    .slide {
+      width: 100%;
+      z-index: 10;
+      
+      img {
+        z-index: 5;
+        width: 100%;
+        height: calc(40vh - 80px);
+        background-position: center;
+        background-size: cover;
+        @include sm {
+          width: 100%;
+          height: calc(60vh - 80px);
+        }
+        @include md {
+          width: 100%;
+          height: calc(80vh - 80px);
+        }
+        @include lg {
+          width: 100%;
+          height: calc(100vh - 80px);
+        }
+      }
+    }
+    // .slide::before {
+    //   position: absolute;
+    //   display: block;
+    //   transform: translate(-100%);
+    //   width: 100%;
+    //   height: 100%;
+    //   background: rgba(0, 0, 0, 0.147);
+    //   content: '';
+    // }
+  }
+}
