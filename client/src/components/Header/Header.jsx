@@ -5,7 +5,15 @@ import "./Header.scss";
 import Search from "./Search/Search";
 // import { Context } from "../../utils/context";
 
+import {useLocation} from "react-router-dom";
+
 const Header = () => {
+  const location = useLocation();
+  
+  useEffect(() => {
+    setShowSearch(false);
+  }, [location]);
+  
   const [scrolled, setScrolled] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();

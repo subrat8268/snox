@@ -9,12 +9,14 @@
     max-width: calc(100% - 20px);
     margin: 0 auto;
     @include md {
-      max-width: 1200px;
+      // max-width: 1200px;
     }
     .single-product-page {
       display: flex;
       flex-direction: column;
-      @include md {
+      @media (min-width: 780px) {
+        margin: 0 auto;
+        max-width: 1200px;
         flex-direction: row;
       }
       .left {
@@ -25,19 +27,23 @@
           width: 600px;
           height: 600px;
         }
+        @media (min-width: 760px) {
+          margin: 0 auto;
+        }
         img {
           width: 100%;
           display: block;
+          
         }
       }
       .right {
         display: flex;
         flex-direction: column;
         padding-top: 20px;
-        @include md {
-          padding: 0 35px;
+        @include sm {
+          padding: 0 22px;
         }
-        .text-bold{
+        .text-bold {
           color: #a4a2a2;
           margin-bottom: 10px;
         }

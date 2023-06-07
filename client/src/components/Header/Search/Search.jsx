@@ -1,23 +1,23 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
 import "./Search.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useGetAllProductsQuery } from "../../../state/api";
 
 const Search = ({ setShowSearch }) => {
-  const [query, setQuery] = useState([]);
+  const [ setQuery] = useState([]);
   const [wordType, setWordType] = useState("");
-  const [suggestedResult, setSuggestedResult] = useState();
+  // const [suggestedResult, setSuggestedResult] = useState();
   const [suggestion, setSuggestion] = useState([]);
-  const searchResult = useRef(null);
+  // const searchResult = useRef(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const onChange = (e) => {
-    setQuery(e.target.value);
-  };
+  // const onChange = (e) => {
+  //   setQuery(e.target.value);
+  // };
 
-  const { data, isLoading } = useGetAllProductsQuery();
+  const { data } = useGetAllProductsQuery();
 
   const handleSuggestion = async (e) => {
     const searchWord = e.target.value.toLowerCase();
@@ -38,13 +38,12 @@ const Search = ({ setShowSearch }) => {
     setWordType("");
     setSuggestion([]);
   };
-  
 
-  const handleSuggestedSearch = async (product) => {
-    setQuery([]);
-    setSuggestedResult(product);
-    setSuggestion([]);
-  };
+  // const handleSuggestedSearch = async (product) => {
+  //   setQuery([]);
+  //   setSuggestedResult(product);
+  //   setSuggestion([]);
+  // };
 
   return (
     <div className="search-modal">
@@ -68,33 +67,41 @@ const Search = ({ setShowSearch }) => {
         <div className="start-msg">
           Start typing to see products you are looking for.
         </div>
-        <div>
+
+        <div className="search-results">
           {suggestion !== 0 && (
             <div>
               {suggestion.map((item, index) => {
                 return (
-                  <div
-                    key={index}
-                    onClick={(e) => {
-                      handleSuggestedSearch(item);
-                    }}
-                  >
-                    <Link to={`/product/${item._id}`}>
-                      <p>{item.title}</p>
-                    </Link>
-                  </div>
+                  <Link to={`/product/${item._id}`} style={{ textDecoration: 'none' }}>
+                    <div
+                      key={index}
+                      className="search-result-item"
+                      // onClick={(e) => {
+                      // handleSuggestedSearch(item);
+                      // }}
+                    >
+                      <div className="image-container">
+                        <img src={item.photo} alt=""/>
+                      </div>
+                      <div className="prod-details">
+                        <span className="name">{item.title}</span>
+                        <span className="desc">{item.desc}</span>
+                      </div>
+                    </div>
+                  </Link>
                 );
               })}
             </div>
           )}
         </div>
-        <div className="search-results" ref={searchResult}>
+        {/* <div className="search-results" ref={searchResult}>
           {query !== 0 &&
             query.splice(0, 23).map((item, index) => {
               return <div key={index}>{item}</div>;
             })}
-          {!suggestedResult ? null : <div>{suggestedResult}</div>}
-        </div>
+          {!suggestedResult ? null : <div>{JSON.stringify(suggestedResult)}</div>}
+        </div> */}
       </div>
     </div>
   );
