@@ -10,7 +10,8 @@ const Products = ({ products, innerPage, headingText }) => {
   };
 
   
-  
+  //should i redeploy on vercel, probably your changes will reflect to it when you push to github. that is done. okay so now  look deployed version to see if still same or not
+  //still same typerror, okay lets go on a screen share and open your vercel dashboard ohk
   
 
   const filteredProducts = selectedCategory ?? selectedCategory

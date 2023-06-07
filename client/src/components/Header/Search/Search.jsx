@@ -17,12 +17,14 @@ const Search = ({ setShowSearch }) => {
   //   setQuery(e.target.value);
   // };
 
+  // can u see????
+
   const { data } = useGetAllProductsQuery();
 
   const handleSuggestion = async (e) => {
     const searchWord = e.target.value.toLowerCase();
     setWordType(searchWord);
-    const filteredProduct = data.filter(
+    const filteredProduct = data ?? data?.filter.filter(
       (item) =>
         item.title.includes(searchWord) || item.category.includes(searchWord)
     );
