@@ -1,25 +1,50 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { MdClose } from "react-icons/md";
 import "./Search.scss";
-import useFetch from "../../../hooks/useFetch";
-import { useNavigate } from "react-router-dom";
-import prod from "../../../assets/products/earbuds-prod-1.webp";
+import { Link, useNavigate } from "react-router-dom";
+import { useGetAllProductsQuery } from "../../../state/api";
 
 const Search = ({ setShowSearch }) => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState([]);
+  const [wordType, setWordType] = useState("");
+  const [suggestedResult, setSuggestedResult] = useState();
+  const [suggestion, setSuggestion] = useState([]);
+  const searchResult = useRef(null);
+
   const navigate = useNavigate();
 
   const onChange = (e) => {
     setQuery(e.target.value);
   };
 
-  let { data } = useFetch(
-    `/api/products?populate=*&filters[title][$contains]=${query}`
-  );
+  const { data, isLoading } = useGetAllProductsQuery();
 
-  if (!query.length) {
-    data = null;
-  }
+  const handleSuggestion = async (e) => {
+    const searchWord = e.target.value.toLowerCase();
+    setWordType(searchWord);
+    const filteredProduct = data.filter(
+      (item) =>
+        item.title.includes(searchWord) || item.category.includes(searchWord)
+    );
+    searchWord === "" ? setSuggestion([]) : setSuggestion(filteredProduct);
+  };
+
+  const handleSearch = async (e) => {
+    const filteredData = data.filter(
+      (item) =>
+        item.title.includes(wordType) || item.category.includes(wordType)
+    );
+    setQuery(filteredData);
+    setWordType("");
+    setSuggestion([]);
+  };
+  
+
+  const handleSuggestedSearch = async (product) => {
+    setQuery([]);
+    setSuggestedResult(product);
+    setSuggestion([]);
+  };
 
   return (
     <div className="search-modal">
@@ -28,8 +53,14 @@ const Search = ({ setShowSearch }) => {
           autoFocus
           type="text"
           placeholder="Search for products"
-          value={query}
-          onChange={onChange}
+          value={wordType}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
+          onChange={handleSuggestion}
+          onFocus={handleSuggestion}
         />
         <MdClose className="close-btn" onClick={() => setShowSearch(false)} />
       </div>
@@ -37,31 +68,32 @@ const Search = ({ setShowSearch }) => {
         <div className="start-msg">
           Start typing to see products you are looking for.
         </div>
-        <div className="search-results">
-          {data?.data?.map((item) => (
-            <div
-              key={item.id}
-              className="search-result-item"
-              onClick={() => {
-                navigate("/product/" + item.id);
-                setShowSearch(false);
-              }}
-            >
-              <div className="image-container">
-                <img
-                  src={
-                    process.env.REACT_APP_DEV_URL +
-                    item.attributes.img.data[0].attributes.url
-                  }
-                  alt="prod-img"
-                />
-              </div>
-              <div className="prod-details">
-                <span className="name">{item.attributes.title}</span>
-                <span className="desc">{item.attributes.desc}</span>
-              </div>
+        <div>
+          {suggestion !== 0 && (
+            <div>
+              {suggestion.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    onClick={(e) => {
+                      handleSuggestedSearch(item);
+                    }}
+                  >
+                    <Link to={`/product/${item._id}`}>
+                      <p>{item.title}</p>
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
-          ))}
+          )}
+        </div>
+        <div className="search-results" ref={searchResult}>
+          {query !== 0 &&
+            query.splice(0, 23).map((item, index) => {
+              return <div key={index}>{item}</div>;
+            })}
+          {!suggestedResult ? null : <div>{suggestedResult}</div>}
         </div>
       </div>
     </div>

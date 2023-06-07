@@ -28,14 +28,14 @@ const Header = () => {
         <div className="header-content">
           <ul className="left">
             <li onClick={() => navigate("/")}>Home</li>
-            <li onClick={() => navigate("/categories")}>Categories</li>
+            {/* <li onClick={() => navigate("/categories")}>Categories</li> */}
           </ul>
           <div className="center" onClick={() => navigate("/")}>
             SNOX.
           </div>
           <div className="right">
             <button
-              class="button-74"
+              className="button-74"
               onClick={() => setShowSearch(true)}
             >
               <span>Search Product</span>

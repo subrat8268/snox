@@ -7,15 +7,20 @@ import {
   FaPinterest,
 } from "react-icons/fa";
 import "./SingleProduct.scss";
-import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
+import { useGetProductQuery } from "../../state/api";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
+  const {data, isLoading} = useGetProductQuery(id);
+  console.log("Data are",data);
 
-  if (!data) return;
-  const product = data.data[0].attributes;
+  if (isLoading) {
+    return (
+      <p>Loading...</p>
+    )
+  }
+
   return (
     <div className="single-product-main-content">
       <div className="layout">
@@ -23,19 +28,18 @@ const SingleProduct = () => {
           <div className="left">
             <img
               src={
-                process.env.REACT_APP_DEV_URL +
-                product.img.data[0].attributes.url
+                data?.photo
               }
               alt="img"
             />
           </div>
           <div className="right">
-            <span className="name">{product.title}</span>
+            <span className="name">{data?.title}</span>
             <span className="text-bold">
               Category:{' '}
-              <span>{product.categories.data[0].attributes.title}</span>
+              <span>{data?.category}</span>
             </span>
-            <span className="desc">{product.desc}</span>
+            <span className="desc">{data?.desc}</span>
 
             <span className="divider" />
             <div className="info-item">
@@ -53,8 +57,8 @@ const SingleProduct = () => {
           </div>
         </div>
         <RelatedProducts
-          productId={id}
-          categoryId={product.categories.data[0].id}
+          productId={data?._id}
+          category={data?.category}
         />
       </div>
     </div>

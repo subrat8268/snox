@@ -3,8 +3,8 @@
     .layout {
         max-width: calc(100% - 20px);
         margin: 0 auto;
-        @include md {
-            max-width: 1200px;
-        }
+        // @include md {
+        //     max-width: 1300px;
+        // }
     }
 }
