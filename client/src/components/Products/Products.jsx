@@ -3,13 +3,17 @@ import Product from "./Product/Product";
 import { useState } from "react";
 
 const Products = ({ products, innerPage, headingText }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
 
-  const filteredProducts = selectedCategory
+  
+  
+  
+
+  const filteredProducts = selectedCategory ?? selectedCategory
     ? products.filter((product) => product.category === selectedCategory)
     : products;
 
