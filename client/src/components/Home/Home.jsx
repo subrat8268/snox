@@ -19,8 +19,8 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <div className="main-content">
-        <div className="layout">
+      <div className="main-content" id="category">
+        <div className="layout" >
           <Products products={data} headingText="Popular Products" />
         </div>
       </div>

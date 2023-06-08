@@ -9,14 +9,10 @@ const Products = ({ products, innerPage, headingText }) => {
     setSelectedCategory(category);
   };
 
-  
-  //should i redeploy on vercel, probably your changes will reflect to it when you push to github. that is done. okay so now  look deployed version to see if still same or not
-  //still same typerror, okay lets go on a screen share and open your vercel dashboard ohk
-  
-
-  const filteredProducts = selectedCategory ?? selectedCategory
-    ? products.filter((product) => product.category === selectedCategory)
-    : products;
+  const filteredProducts =
+    selectedCategory ?? selectedCategory
+      ? products.filter((product) => product.category === selectedCategory)
+      : products;
 
   const getAllProduct = () => {
     setSelectedCategory(null);
@@ -25,17 +21,24 @@ const Products = ({ products, innerPage, headingText }) => {
   return (
     <div className="products-container">
       {!innerPage && <div className="sec-heading">Products</div>}
-
+      <div className="alert">
+        <p>*Click On Any Category To Get The Products</p>
+      </div>
       <div className="category">
         <button className="btn" onClick={getAllProduct}>
-          <img src="https://firebasestorage.googleapis.com/v0/b/snox-f305b.appspot.com/o/All%20Products.png?alt=media&token=0328b5cf-55ef-45cf-aa12-84146307755f" alt="" />
+          <img
+            loading="lazy"
+            src="https://ik.imagekit.io/ztj3g4gzm/CategorySnox/All_Products.png?updatedAt=1686253214552"
+            alt=""
+          />
         </button>
         <button
           className="btn"
           onClick={() => handleCategoryClick("triclover valve")}
         >
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/snox-f305b.appspot.com/o/Triclover_Valve_13b49a5750.png?alt=media&token=4c8ba236-f512-465d-a2bf-ef267a35a8a7"
+            loading="lazy"
+            src="https://ik.imagekit.io/ztj3g4gzm/CategorySnox/Triclover_Valve.png?updatedAt=1686253214388"
             alt=""
           />
         </button>
@@ -44,7 +47,8 @@ const Products = ({ products, innerPage, headingText }) => {
           onClick={() => handleCategoryClick("triclover fittings")}
         >
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/snox-f305b.appspot.com/o/Triclover_Fittings_09bf0eb0ab.png?alt=media&token=5ba52ecb-0237-4c56-9be0-2f5556e876b8"
+            loading="lazy"
+            src="https://ik.imagekit.io/ztj3g4gzm/CategorySnox/Triclover_Fittings__1_.png?updatedAt=1686253214385"
             alt=""
           />
         </button>
@@ -53,7 +57,8 @@ const Products = ({ products, innerPage, headingText }) => {
           onClick={() => handleCategoryClick("stainless steels")}
         >
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/snox-f305b.appspot.com/o/Stainless_Steel_d349bb9927.png?alt=media&token=10fd3209-2602-4a69-b945-5418b2a29781"
+            loading="lazy"
+            src="https://ik.imagekit.io/ztj3g4gzm/CategorySnox/Stainless_Steel.png?updatedAt=1686253214357"
             alt=""
           />
         </button>
@@ -62,18 +67,20 @@ const Products = ({ products, innerPage, headingText }) => {
           onClick={() => handleCategoryClick("stainless steel dairy fittings")}
         >
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/snox-f305b.appspot.com/o/SS_Dairy_Fittings_dbb374a2de.png?alt=media&token=cc4e75d1-9ccb-448a-9865-ac22a73fda8f"
+            loading="lazy"
+            src="https://ik.imagekit.io/ztj3g4gzm/CategorySnox/SS_Dairy_Fittings.png?updatedAt=1686253214353"
             alt=""
           />
         </button>
         <button className="btn" onClick={() => handleCategoryClick("fittings")}>
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/snox-f305b.appspot.com/o/Fittings_ab15d3620b.png?alt=media&token=170d970e-bcbd-4725-b29e-368548e9336b"
+            loading="lazy"
+            src="https://ik.imagekit.io/ztj3g4gzm/CategorySnox/Fittings.png?updatedAt=1686253214584"
             alt=""
           />
         </button>
       </div>
-
+      
       <div className="products">
         {filteredProducts?.map((item) => (
           <Product key={item._id} id={item._id} data={item} />

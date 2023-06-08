@@ -31,7 +31,7 @@ const RelatedProducts = ({ category }) => {
             onClick={() => handleClick(item)}
           >
             <div className="thumbnail">
-              <img src={item?.photo} alt="product img" />
+              <img loading="lazy" src={item?.photo} alt="product img" />
             </div>
             <div className="prod-details">
               <span className="name">{item?.title}</span>

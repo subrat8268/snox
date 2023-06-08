@@ -3,17 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { TbSearch } from "react-icons/tb";
 import "./Header.scss";
 import Search from "./Search/Search";
-// import { Context } from "../../utils/context";
-
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
+// import { useGetAllProductsQuery } from "../../state/api";
 
 const Header = () => {
   const location = useLocation();
-  
   useEffect(() => {
     setShowSearch(false);
   }, [location]);
-  
+
   const [scrolled, setScrolled] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
@@ -30,22 +28,38 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
   }, []);
 
+  // const { data } = useGetAllProductsQuery();
+  // const [category, setCategory] = useState("fittings");
+
+  // const handleChange = (event) => {
+  //   setCategory(event.target.value);
+  // };
+  // console.log(category);
+
   return (
     <>
       <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
         <div className="header-content">
           <ul className="left">
             <li onClick={() => navigate("/")}>Home</li>
-            {/* <li onClick={() => navigate("/categories")}>Categories</li> */}
+            <li
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({
+                  top: document.querySelector("#category").offsetTop,
+                  behavior: "smooth",
+                });
+              }}
+            >
+              Categories
+            </li>
           </ul>
+
           <div className="center" onClick={() => navigate("/")}>
             SNOX.
           </div>
           <div className="right">
-            <button
-              className="button-74"
-              onClick={() => setShowSearch(true)}
-            >
+            <button className="button-74" onClick={() => setShowSearch(true)}>
               <span>Search Product</span>
               <TbSearch />
             </button>

@@ -4,10 +4,10 @@ import "slick-carousel/slick/slick-theme.css";
 import React from "react";
 import Slider from "react-slick";
 // import BannerImg from "../../../assets/banner-img.png";
-import BannerImg1 from "../../../assets/slider1.jpg";
-import BannerImg2 from "../../../assets/slider2.jpg";
-import BannerImg3 from "../../../assets/slider3.jpg";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+// import BannerImg1 from "../../../assets/slider1.jpg";
+// import BannerImg2 from "../../../assets/slider2.jpg";
+// import BannerImg3 from "../../../assets/slider3.jpg";
+// import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 const Banner = () => {
   var settings = {
@@ -17,34 +17,23 @@ const Banner = () => {
     speed: 500,
     autoplaySpeed: 2000,
     slidesToShow: 1,
+    lazyLoad: true,
   };
   return (
     <div className="hero-banner">
       <div className="content">
-        {/* <div className="text-content">
-          <h1>SALES</h1>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam
-            iusto illum id voluptates doloremque ex aspernatur dicta, corrupti
-            molestias tempore?
-          </p>
-          <div className="ctas">
-            <div className="banner-cta">Read More</div>
-            <div className="banner-cta v2">Shop Now</div>
-          </div>
-        </div> */}
         <div id="slider">
           <Slider {...settings}>
             <div className="slide">
-              <img src={BannerImg1} alt="Banner" />
+              <img src="https://ik.imagekit.io/ztj3g4gzm/slider1.d33ef36fdec41801daaf.jpg?updatedAt=1686256033585" loading="lazy" alt="Banner" />
             </div>
 
             <div className="slide">
-              <img src={BannerImg2} alt="Banner" />
+              <img src="https://ik.imagekit.io/ztj3g4gzm/slider2.4ae886004619a83f9646.jpg?updatedAt=1686256034896" loading="lazy" alt="Banner" />
             </div>
 
             <div className="slide">
-              <img src={BannerImg3} alt="Banner" />
+              <img src="https://ik.imagekit.io/ztj3g4gzm/slider3.9a3fda89c5b7980b5073.jpg?updatedAt=1686256034401" loading="lazy" alt="Banner" />
             </div>
           </Slider>
         </div>

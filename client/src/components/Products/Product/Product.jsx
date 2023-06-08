@@ -7,6 +7,7 @@ const Product = ({ id, data }) => {
     <div className="product-card" onClick={() => navigate("/product/" + id)}>
       <div className="thumbnail">
         <img
+          loading="lazy"
           src={data.photo} alt="product img"
         />
       </div>

@@ -5,47 +5,31 @@ import { Link } from "react-router-dom";
 import { useGetAllProductsQuery } from "../../../state/api";
 
 const Search = ({ setShowSearch }) => {
-  const [setQuery] = useState([]);
-  const [wordType, setWordType] = useState("");
-  // const [suggestedResult, setSuggestedResult] = useState();
-  const [suggestion, setSuggestion] = useState([]);
-  // const searchResult = useRef(null);
-
-  // const navigate = useNavigate();
-
-  // const onChange = (e) => {
-  //   setQuery(e.target.value);
-  // };
-
   const { data } = useGetAllProductsQuery();
+  const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
-  const handleSuggestion = async (e) => {
+  const handleSuggestion = (e) => {
     const searchWord = e.target.value.toLowerCase();
-    setWordType(searchWord);
-    const filteredProduct =
-      data ??
-      data?.filter.filter(
-        (item) =>
-          item.title.includes(searchWord) || item.category.includes(searchWord)
-      );
-    searchWord === "" ? setSuggestion([]) : setSuggestion(filteredProduct);
-  };
-
-  const handleSearch = async (e) => {
-    const filteredData = data.filter(
+    setQuery(searchWord);
+    const filteredProducts = data?.filter(
       (item) =>
-        item.title.includes(wordType) || item.category.includes(wordType)
+        item.title.toLowerCase().includes(searchWord) ||
+        item.category.toLowerCase().includes(searchWord)
     );
-    setQuery(filteredData);
-    setWordType("");
-    setSuggestion([]);
+    setSuggestions(searchWord === "" ? [] : filteredProducts);
   };
 
-  // const handleSuggestedSearch = async (product) => {
-  //   setQuery([]);
-  //   setSuggestedResult(product);
-  //   setSuggestion([]);
-  // };
+  const handleSearch = () => {
+    const filteredData = data?.filter(
+      (item) =>
+        item.title.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query)
+    );
+    setQuery("");
+    setSuggestions([]);
+    setQuery(filteredData);
+  };
 
   return (
     <div className="search-modal">
@@ -54,7 +38,7 @@ const Search = ({ setShowSearch }) => {
           autoFocus
           type="text"
           placeholder="Search for products"
-          value={wordType}
+          value={query}
           onKeyPress={(e) => {
             if (e.key === "Enter") {
               handleSearch();
@@ -70,43 +54,27 @@ const Search = ({ setShowSearch }) => {
           Start typing to see products you are looking for.
         </div>
         <div className="search-results">
-          {/* this was wrong?, now ok. shoild deploy?.. yea we re finding errors at build time. but wait.*/}
-          {suggestion && suggestion?.length !== 0 && (
+          {suggestions.length !== 0 && (
             <div>
-              {suggestion?.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="search-result-item"
-                    // onClick={(e) => {
-                    // handleSuggestedSearch(item);
-                    // }}
+              {suggestions.map((item, index) => (
+                <div key={index} className="search-result-item">
+                  <Link
+                    to={`/product/${item._id}`}
+                    style={{ textDecoration: "none" }}
                   >
-                    <Link
-                      to={`/product/${item._id}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <div className="image-container">
-                        <img src={item?.photo} alt="" />
-                      </div>
-                      <div className="prod-details">
-                        <span className="name">{item?.title}</span>
-                        <span className="desc">{item?.desc}</span>
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
+                    <div className="image-container">
+                      <img src={item?.photo} alt="" />
+                    </div>
+                    <div className="prod-details">
+                      <span className="name">{item?.title}</span>
+                      <span className="desc">{item?.desc}</span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
             </div>
           )}
         </div>
-        {/* <div className="search-results" ref={searchResult}>
-          {query !== 0 &&
-            query.splice(0, 23).map((item, index) => {
-              return <div key={index}>{item}</div>;
-            })}
-          {!suggestedResult ? null : <div>{JSON.stringify(suggestedResult)}</div>}
-        </div> */}
       </div>
     </div>
   );

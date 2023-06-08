@@ -8,6 +8,9 @@
   font-size: 18px;
   font-weight: 500;
   text-transform: uppercase;
+  @media (min-width: 340px) { 
+    margin: 30px 15px;
+  }
   @include md {
     margin-bottom: 35px;
     font-size: 24px;
