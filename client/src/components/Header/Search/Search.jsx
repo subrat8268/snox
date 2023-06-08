@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useGetAllProductsQuery } from "../../../state/api";
 
 const Search = ({ setShowSearch }) => {
-  const [ setQuery] = useState([]);
+  const [setQuery] = useState([]);
   const [wordType, setWordType] = useState("");
   // const [suggestedResult, setSuggestedResult] = useState();
   const [suggestion, setSuggestion] = useState([]);
@@ -17,17 +17,17 @@ const Search = ({ setShowSearch }) => {
   //   setQuery(e.target.value);
   // };
 
-  // can u see????
-
   const { data } = useGetAllProductsQuery();
 
   const handleSuggestion = async (e) => {
     const searchWord = e.target.value.toLowerCase();
     setWordType(searchWord);
-    const filteredProduct = data ?? data?.filter.filter(
-      (item) =>
-        item.title.includes(searchWord) || item.category.includes(searchWord)
-    );
+    const filteredProduct =
+      data ??
+      data?.filter.filter(
+        (item) =>
+          item.title.includes(searchWord) || item.category.includes(searchWord)
+      );
     searchWord === "" ? setSuggestion([]) : setSuggestion(filteredProduct);
   };
 
@@ -69,29 +69,32 @@ const Search = ({ setShowSearch }) => {
         <div className="start-msg">
           Start typing to see products you are looking for.
         </div>
-
         <div className="search-results">
-          {suggestion !== 0 && (
+          {/* this was wrong?, now ok. shoild deploy?.. yea we re finding errors at build time. but wait.*/}
+          {suggestion && suggestion?.length !== 0 && (
             <div>
-              {suggestion.map((item, index) => {
+              {suggestion?.map((item, index) => {
                 return (
-                  <Link to={`/product/${item._id}`} style={{ textDecoration: 'none' }}>
-                    <div
-                      key={index}
-                      className="search-result-item"
-                      // onClick={(e) => {
-                      // handleSuggestedSearch(item);
-                      // }}
+                  <div
+                    key={index}
+                    className="search-result-item"
+                    // onClick={(e) => {
+                    // handleSuggestedSearch(item);
+                    // }}
+                  >
+                    <Link
+                      to={`/product/${item._id}`}
+                      style={{ textDecoration: "none" }}
                     >
                       <div className="image-container">
-                        <img src={item.photo} alt=""/>
+                        <img src={item?.photo} alt="" />
                       </div>
                       <div className="prod-details">
-                        <span className="name">{item.title}</span>
-                        <span className="desc">{item.desc}</span>
+                        <span className="name">{item?.title}</span>
+                        <span className="desc">{item?.desc}</span>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  </div>
                 );
               })}
             </div>
