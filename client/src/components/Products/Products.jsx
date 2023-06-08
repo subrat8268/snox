@@ -28,7 +28,7 @@ const Products = ({ products, innerPage, headingText }) => {
         <button className="btn" onClick={getAllProduct}>
           <img
             loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-200,w-200/CategorySnox/All_Products.png?updatedAt=1686253214552"
+            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/All_Products.png?updatedAt=1686253214552"
             alt=""
           />
         </button>
@@ -38,7 +38,7 @@ const Products = ({ products, innerPage, headingText }) => {
         >
           <img
             loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-200,w-200/CategorySnox/Triclover_Valve.png?updatedAt=1686253214388"
+            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/Triclover_Valve.png?updatedAt=1686253214388"
             alt=""
           />
         </button>
@@ -48,7 +48,7 @@ const Products = ({ products, innerPage, headingText }) => {
         >
           <img
             loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-200,w-200/CategorySnox/Triclover_Fittings__1_.png?updatedAt=1686253214385"
+            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/Triclover_Fittings__1_.png?updatedAt=1686253214385"
             alt=""
           />
         </button>
@@ -58,7 +58,7 @@ const Products = ({ products, innerPage, headingText }) => {
         >
           <img
             loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-200,w-200/CategorySnox/Stainless_Steel.png?updatedAt=1686253214357"
+            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/Stainless_Steel.png?updatedAt=1686253214357"
             alt=""
           />
         </button>
@@ -68,7 +68,7 @@ const Products = ({ products, innerPage, headingText }) => {
         >
           <img
             loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-200,w-200/CategorySnox/SS_Dairy_Fittings.png?updatedAt=1686253214353"
+            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/SS_Dairy_Fittings.png?updatedAt=1686253214353"
             alt=""
           />
         </button>
