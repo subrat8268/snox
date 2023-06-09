@@ -22,7 +22,7 @@ const Products = ({ products, innerPage, headingText }) => {
     <div className="products-container">
       {!innerPage && <div className="sec-heading">Products</div>}
       <div className="alert">
-        <p>*Click On Any Category To Get The Products</p>
+        <p>*Click On Any Category Below To Find Your Products</p>
       </div>
       <div className="category">
         <button className="btn" onClick={getAllProduct}>

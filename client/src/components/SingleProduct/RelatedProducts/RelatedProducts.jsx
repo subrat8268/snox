@@ -22,7 +22,7 @@ const RelatedProducts = ({ category }) => {
 
   return (
     <div>
-      <h1 className="sec-heading">Related Products</h1>
+      <h1 className="sec-head">Related Products</h1>
       <div className="related-products">
         {filteredData?.map((item) => (
           <div

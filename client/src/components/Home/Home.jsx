@@ -11,15 +11,7 @@ const Home = () => {
     'https://ik.imagekit.io/ztj3g4gzm/tr:h-884,w-1440/slider3.9a3fda89c5b7980b5073.jpg?updatedAt=1686256034401',
   ];
 
-  const { data, isLoading } = useGetAllProductsQuery();
-  
-  // console.log("product data",data)
-
-  if (isLoading) {
-    return (
-      <div className="home-container">Loading ...</div>
-    )
-  }
+  const { data } = useGetAllProductsQuery();
 
   return (
     <div>

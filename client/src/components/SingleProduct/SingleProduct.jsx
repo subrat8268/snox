@@ -12,15 +12,8 @@ import { useGetProductQuery } from "../../state/api";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const {data, isLoading} = useGetProductQuery(id);
-  console.log("Data are",data);
-
-  if (isLoading) {
-    return (
-      <p>Loading...</p>
-    )
-  }
-
+  const {data} = useGetProductQuery(id);
+  
   return (
     <div className="single-product-main-content">
       <div className="layout">
