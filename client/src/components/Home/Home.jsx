@@ -24,7 +24,7 @@ const Home = () => {
           <Products products={data} headingText="Popular Products" />
         </div>
       </div>
-      <div className="about-us-page">
+      <div className="about-us-page" id="aboutus">
         <div className="about-us-content overlay">
           <h1>About Us</h1>
           <p>
