@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const Products = ({ products, innerPage, headingText }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
-
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
@@ -25,62 +24,38 @@ const Products = ({ products, innerPage, headingText }) => {
         <p>*Click On Any Category Below To Find Your Products</p>
       </div>
       <div className="category">
-        <button className="btn" onClick={getAllProduct}>
-          <img
-            loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/All_Products.png?updatedAt=1686253214552"
-            alt=""
-          />
-        </button>
         <button
           className="btn"
           onClick={() => handleCategoryClick("triclover valve")}
         >
-          <img
-            loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/Triclover_Valve.png?updatedAt=1686253214388"
-            alt=""
-          />
+          triclover valve
         </button>
         <button
           className="btn"
           onClick={() => handleCategoryClick("triclover fittings")}
         >
-          <img
-            loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/Triclover_Fittings__1_.png?updatedAt=1686253214385"
-            alt=""
-          />
+          triclover fittings
         </button>
         <button
           className="btn"
           onClick={() => handleCategoryClick("stainless steels")}
         >
-          <img
-            loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/Stainless_Steel.png?updatedAt=1686253214357"
-            alt=""
-          />
+          stainless steels
         </button>
         <button
           className="btn"
           onClick={() => handleCategoryClick("stainless steel dairy fittings")}
         >
-          <img
-            loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/SS_Dairy_Fittings.png?updatedAt=1686253214353"
-            alt=""
-          />
+          stainless steel dairy fittings
         </button>
         <button className="btn" onClick={() => handleCategoryClick("fittings")}>
-          <img
-            loading="lazy"
-            src="https://ik.imagekit.io/ztj3g4gzm/tr:h-500,w-500/CategorySnox/Fittings.png?updatedAt=1686253214584"
-            alt=""
-          />
+          fittings
+        </button>
+        <button className="btn" onClick={getAllProduct}>
+          All Products
         </button>
       </div>
-      
+
       <div className="products">
         {filteredProducts?.map((item) => (
           <Product key={item._id} id={item._id} data={item} />
