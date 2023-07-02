@@ -53,6 +53,17 @@ const Header = () => {
             >
               Categories
             </li>
+            <li
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({
+                  top: document.querySelector("#aboutus").offsetTop,
+                  behavior: "smooth",
+                });
+              }}
+            >
+              About Us
+            </li>
           </ul>
 
           <div className="center" onClick={() => navigate("/")}>
