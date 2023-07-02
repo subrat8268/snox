@@ -39,7 +39,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
+      <header className={`main-header ${scrolled ? "sticky-header" : ""}`} style:{{position: "fixed"}}>
         <div className="header-content">
           <ul className="left">
             <li onClick={() => navigate("/")}>Home</li>
