@@ -4,6 +4,7 @@ import { TbSearch } from "react-icons/tb";
 import "./Header.scss";
 import Search from "./Search/Search";
 import { useLocation } from "react-router-dom";
+import Logo from '../../assets/snoxlogo.png';
 // import { useGetAllProductsQuery } from "../../state/api";
 
 const Header = () => {
@@ -67,7 +68,7 @@ const Header = () => {
           </ul>
 
           <div className="center" onClick={() => navigate("/")}>
-            SNOX.
+            <img src={Logo} alt="Logo" />
           </div>
           <div className="right">
             <button className="button-74" onClick={() => setShowSearch(true)}>
